@@ -216,9 +216,11 @@ a { color: inherit; text-decoration: none; }
 }
 
 .hero-icons a {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -226,8 +228,8 @@ a { color: inherit; text-decoration: none; }
   transition: color 0.15s ease, background 0.15s ease, transform 0.15s ease;
 }
 .hero-icons a:hover {
-  color: var(--accent);
-  background: var(--surface);
+  color: var(--accent-contrast);
+  background: var(--accent);
   transform: translateY(-2px);
 }
 
@@ -380,9 +382,9 @@ a { color: inherit; text-decoration: none; }
 
 .proj-item {
   display: flex;
-  gap: 1.75rem;
-  align-items: flex-start;
-  padding: 2.5rem 0;
+  gap: 2.25rem;
+  align-items: center;
+  padding: 3rem 0;
   border-top: 1px solid var(--line);
 }
 .proj-item:first-child {
@@ -390,19 +392,40 @@ a { color: inherit; text-decoration: none; }
   padding-top: 0;
 }
 
-.proj-thumb {
-  flex: none;
-  width: 200px;
-  aspect-ratio: 11 / 8;
-  border-radius: var(--radius);
-  overflow: hidden;
+.proj-media {
+  position: relative;
+  flex: 1 1 58%;
+  min-width: 0;
   color: var(--accent);
+}
+
+.proj-media svg,
+.proj-media img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: var(--radius);
   box-shadow: var(--shadow);
 }
-.proj-thumb svg { display: block; width: 100%; height: 100%; }
-.proj-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
-.proj-body { flex: 1; min-width: 0; }
+/* Description card floats over the image's bottom-right corner and
+   bleeds slightly past its edge into the info column, like a caption
+   pinned to the screenshot rather than plain body copy beside it. */
+.proj-overlay {
+  position: absolute;
+  right: -1.5rem;
+  bottom: 1.25rem;
+  width: min(260px, 62%);
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1rem 1.15rem;
+  box-shadow: var(--shadow);
+}
+
+.proj-info { flex: 1 1 38%; min-width: 180px; }
 
 .proj-eyebrow {
   color: var(--accent);
@@ -419,13 +442,16 @@ a { color: inherit; text-decoration: none; }
 }
 
 .proj-desc {
-  margin-top: 0.9rem;
-  color: var(--ink-muted);
-  max-width: 60ch;
+  margin: 0;
+  color: var(--ink);
+  font-size: 0.88rem;
+  line-height: 1.5;
 }
 
+.proj-info .proj-stack { margin-top: 1.25rem; }
+
 .proj-links {
-  margin-top: 1.1rem;
+  margin-top: 1.25rem;
   display: flex;
   gap: 0.6rem;
 }
@@ -484,8 +510,14 @@ a { color: inherit; text-decoration: none; }
   .nav-links a { font-size: 0.85rem; }
   .section { padding: 4.5rem 1.25rem; }
   .exp-meta { flex-direction: column; gap: 0.15rem; }
-  .proj-item { flex-direction: column; }
-  .proj-thumb { width: 100%; }
+  .proj-item { flex-direction: column; align-items: stretch; }
+  .proj-media { width: 100%; }
+  .proj-overlay {
+    position: static;
+    width: 100%;
+    margin-top: 1rem;
+  }
+  .proj-info .proj-stack { margin-top: 1rem; }
 }
 
 @media (max-width: 480px) {
