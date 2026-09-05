@@ -411,29 +411,7 @@ a { color: inherit; text-decoration: none; }
   box-shadow: var(--shadow);
 }
 
-/* Description card sits mostly in the gap beside the image, only its
-   inner edge tucked over the corner — a caption pinned to the
-   screenshot, not a block covering half of it. Mirrors to the image's
-   outer edge on reversed (image-right) cards so it never bleeds off
-   the section's outer edge. */
-.proj-overlay {
-  position: absolute;
-  right: -2rem;
-  bottom: 1.25rem;
-  width: min(190px, 46%);
-  background: color-mix(in srgb, var(--surface) 88%, transparent);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 0.85rem 1rem;
-  box-shadow: var(--shadow);
-}
-.proj-item:nth-child(even) .proj-overlay {
-  right: auto;
-  left: -2rem;
-}
-
-.proj-info { flex: 1 1 38%; min-width: 180px; }
+.proj-info { flex: 1 1 42%; min-width: 200px; }
 
 .proj-eyebrow {
   color: var(--accent);
@@ -450,10 +428,9 @@ a { color: inherit; text-decoration: none; }
 }
 
 .proj-desc {
-  margin: 0;
-  color: var(--ink);
-  font-size: 0.83rem;
-  line-height: 1.45;
+  margin-top: 0.9rem;
+  color: var(--ink-muted);
+  max-width: 60ch;
 }
 
 .proj-info .proj-stack { margin-top: 1.25rem; }
@@ -520,13 +497,6 @@ a { color: inherit; text-decoration: none; }
   .exp-meta { flex-direction: column; gap: 0.15rem; }
   .proj-item, .proj-item:nth-child(even) { flex-direction: column; align-items: stretch; }
   .proj-media { width: 100%; }
-  .proj-overlay, .proj-item:nth-child(even) .proj-overlay {
-    position: static;
-    width: 100%;
-    margin-top: 1rem;
-    left: auto;
-    right: auto;
-  }
   .proj-info .proj-stack { margin-top: 1rem; }
 }
 
